@@ -19,37 +19,50 @@ def cadastrarocliente():
 
 def cadastroItem():
     while True:
-        os.system("cls")
-        input(" ______________________________\n |                            |\n |                            |\n |      Cadastro de item      |\n |                            |\n |____________________________|\n\nRealize seu Cadastro a seguir.\nClique em qualquer tecla para continuar... ")
-        tipo=int(input("1º Filme\n2º Jogo\n3º Sair\n-->"))
-        if tipo==1:
-            idd=int(input("ID do filme:"))
+        try:
             os.system("cls")
-            titulo=input("Título do filme:")
-            os.system("cls")
-            genero=input("Gênero:")
-            os.system("cls")
-            Locadoraa.cadastrarFilme(idd,titulo,genero)
-            print("\nFilme cadastrado com sucesso!")
-            os.system("cls")
-            os.system("pause")
+            input(" ______________________________\n |                            |\n |                            |\n |      Cadastro de item      |\n |                            |\n |____________________________|\n\nRealize seu Cadastro a seguir.\nClique em qualquer tecla para continuar... ")
+            tipo=int(input("1º Filme\n2º Jogo\n3º Sair\n-->"))
+            if tipo==1:
+                idd=int(input("ID do filme:"))
+                os.system("cls")
+                titulo=input("Título do filme:")
+                os.system("cls")
+                genero=input("Gênero:")
+                os.system("cls")
+                Locadoraa.cadastrarFilme(idd,titulo,genero)
+                print("\nFilme cadastrado com sucesso!")
+                os.system("cls")
+                os.system("pause")
+        except Exception as e:
+            print ("ERRO NA 1")
+            os.system ("pause")
             break
 
-
-        elif tipo==2:
-            idd=int(input("ID do jogo:"))
-            os.system("cls")
-            titulo=input("Nome do jogo:")
-            os.system("cls")
-            faixa=input("Faixa etária:")
-            os.system("cls")
-            Locadoraa.cadastrarJogo(idd,titulo,faixa)
-            print("\nJogo cadastrado com sucesso!")
-            os.system("cls")
-            os.system("pause")
+    try:
+                if tipo==2:
+                    idd=int(input("ID do jogo:"))
+                os.system("cls")
+                titulo=input("Nome do jogo:")
+                os.system("cls")
+                faixa=input("Faixa etária:")
+                os.system("cls")
+                Locadoraa.cadastrarJogo(idd,titulo,faixa)
+                print("\nJogo cadastrado com sucesso!")
+                os.system("cls")
+                os.system("pause")
+    except Exception as e:
+            print ("ERRO NA 2")
+            os.system ("pause")
             break
         
-        elif tipo==3:
+    if tipo==3:
+            try:
+        except Exception as e:
+        print ("Ocorreu um erro inesperado")
+        os.system ("pause")
+
+            
             break
         else:
             print("Opção inválida")
