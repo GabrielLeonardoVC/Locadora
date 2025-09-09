@@ -26,6 +26,7 @@ class filme(item):
         self.__idd=idd
         self.__genero=genero
         self.__titulo=titulo
+        self.__item__disponivel=True
 
         def genero(self):
             return self.__genero
@@ -35,14 +36,16 @@ class jogos(item):
         self.__idd=idd
         self.__titulo=titulo
         self.__genero=genero
+        self.__item__disponivel= True
 
-class clientes(item):
-    def __init__(self, nome, cpf, itemalugado):
+    def getgenero(self):
+         return self.__genero
+
+class clientes:
+    def __init__(self, nome, cpf):
         self.__nome=nome
         self.__cpf=cpf
         self.__itemalugado=[]
-
-
 
 def getnome(self):
     return self.__nome
@@ -52,7 +55,6 @@ def getcpf(self):
 
 def itemalugado(self):
     return self.__itemalugado
-
 
 def locacao(self,item:item):
     if item.disponivel():
@@ -64,7 +66,7 @@ def locacao(self,item:item):
 
 def devolver(self, item:item):
     if item in self.__itemalugado:
-        devolver.item()
+        item.devolver()
         self.__itemalugado.remove(item)
         return True
     return False
