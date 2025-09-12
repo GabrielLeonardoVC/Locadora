@@ -1,16 +1,10 @@
 Locação
-O sistema de Locação de Jogos e Filmes é um código em Python usando POO que permite com que gerencie os clientes, jogos e filmes deixando-os práticos. É possível fazer o cadastro de clientes,
+O sistema de Locação de Jogos e Filmes é um código em Python usando POO que permite com que gerencie os clientes, jogos e filmes deixando-os práticos. É possível fazer o cadastro de clientes, registra os itens para a locação, controla os empréstimos e devolução e também acompanha a disponibilidade dos itens,
+
 ======= TERMINAR ================
 
-O Sistema de Locadora de Filmes e Jogos é uma aplicação em Python que permite gerenciar clientes, filmes e jogos de forma prática e organizada. Com ele, é possível:
 
-Cadastrar clientes;
 
-Registrador de itens para locação;
-
-Controlar empréstimos e devoluções;
-
-Acompanhe a disponibilidade de cada item.
 
 O projeto foi desenvolvido utilizando conceitos de Programação Orientada a Objetos (POO), como herança e encapsulamento, especificamente como exemplo para estudos de POO e oferecendo uma experiência completa de como uma locadora funciona de forma estruturada e eficiente.
 
