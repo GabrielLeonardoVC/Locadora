@@ -1,93 +1,123 @@
 import os
 from classes import *
-Locadoraa = locadora("Locadora")
+locadoraa=locadora("Locadora")
+
+def pause():
+    os.system("pause")
 
 def cadastrarocliente():
-    try:
-        input(" ______________________\n |                    |\n |                    |\n |      Cadastro      |\n |                    |\n |____________________|\n\nRealize seu Cadastro a seguir.\nClique em qualquer tecla para continuar... ")
-        os.system("cls")
-        nome = input("Informe o nome do cliente: ")
-        os.system("cls")
-        cpf = input("Informe o CPF do cliente: ")
-        os.system("cls")
-        print("\nCliente cadastrado com sucesso!")
-        os.system("pause")
-    except Exception as e:
-        print ("Ocorreu um erro inesperado")
-        os.system ("pause")
+    nome=input("Digite seu nome: ")
+    os.system("cls")
+    cpf = input("Digite seu CPF: ")
+    os.system("cls")
+    locadoraa.cadastrarcliente(nome,cpf)
+    print("Cadastro Concluído")
+    pause()
 
-
-def cadastroItem():
+def cadastroitem():
     while True:
-        try:
+        print("1ºFilme\n2ºJogo\n3ºVoltar")
+        tipo=int(input("Digite o que deseja fazer à seguir\n--> "))
+        os.system("cls")
+
+        if tipo==1:
+            idd=int(input("Digite o Id do filme: "))
             os.system("cls")
-            input(" ______________________________\n |                            |\n |                            |\n |      Cadastro de item      |\n |                            |\n |____________________________|\n\nRealize seu Cadastro a seguir.\nClique em qualquer tecla para continuar... ")
-            tipo=int(input("1º Filme\n2º Jogo\n3º Sair\n-->"))
-            if tipo==1:
-                idd=int(input("ID do filme:"))
-                os.system("cls")
-                titulo=input("Título do filme:")
-                os.system("cls")
-                genero=input("Gênero:")
-                os.system("cls")
-                Locadoraa.cadastrarFilme(idd,titulo,genero)
-                print("\nFilme cadastrado com sucesso!")
-                os.system("cls")
-                os.system("pause")
-        except Exception as e:
-            print ("ERRO NA 1")
-            os.system ("pause")
+            titulo=input("Título do filme: ")
+            os.system("cls")
+            genero=input("Gênero: ")
+            os.system("cls")
+            locadoraa.cadastrarfilme(idd,titulo,genero)
+            print("Filme cadastrado com sucesso!")
+            pause()
             break
 
-    try:
-                if tipo==2:
-                    idd=int(input("ID do jogo:"))
-                os.system("cls")
-                titulo=input("Nome do jogo:")
-                os.system("cls")
-                faixa=input("Faixa etária:")
-                os.system("cls")
-                Locadoraa.cadastrarJogo(idd,titulo,faixa)
-                print("\nJogo cadastrado com sucesso!")
-                os.system("cls")
-                os.system("pause")
-    except Exception as e:
-            print ("ERRO NA 2")
-            os.system ("pause")
+        elif tipo==2:
+            idd=int(input("Digite o Id do jogo: "))
+            os.system("cls")
+            titulo=input("Digite o nome do jogo: ")
+            os.system("cls")
+            faixa=input("Digite a faixa etária\n(Livre | 12 | 14 | 16 | 18 |)\n--> ")
+            os.system("cls")
+            locadoraa.cadastrarJogo(idd,titulo,faixa)
+            print("Jogo cadastrado com sucesso!")
+            pause()
             break
-        
-    if tipo==3:
-            try:
-        except Exception as e:
-        print ("Ocorreu um erro inesperado")
-        os.system ("pause")
 
-            
+        elif tipo == 3:
             break
+
         else:
-            print("Opção inválida")
-            os.system("cls")
-            os.system("pause")
-
+            print("Opção inválida...")
+            pause()
 
 def listaroclientes():
+    clientes=locadoraa.listarclientes()
+    if not clientes:
+        print("Nenhum cliente cadastrado...")
+    else:
+        for numero,cliente in clientes.items():
+            print(f"{numero}-{cliente.getnome()} | CPF: {cliente.getcpf()}")
+    pause()
+
+def listaritens():
+    itens=locadoraa.listaritens()
+    if not itens:
+        print("Nenhum item foi cadastrado...")
+    else:
+        for iid,item in itens.items():
+            status="Disponível" if item.isdisponivel() else "Alugado"
+            print(f"{iid}-{item.gettitulo()} ({status})")
+    pause()
+
+def emprestaritem():
+    listaroclientes()
+    cliente_id=int(input("Digite o Id do cliente: "))
     os.system("cls")
-    input(" ______________________________\n |                            |\n |                            |\n |      Lista de clientes      |\n |                            |\n |____________________________|\n\nLista dos clientes a seguir.\nClique em qualquer tecla para continuar... ")
+    cliente=locadoraa.getcliente(cliente_id)
+    if not cliente:
+        print("O cliente não foi encontrado...")
+        pause()
+        return
 
-    for idd, cliente in Locadoraa.listaroclientes().item():
-        print(f"{idd}-{cliente.getNome()}CPF:{cliente.getCpf()}")
-        os.system("cls")
-    os.system("pause")
+    listaritens()
+    item_id=int(input("Digite o Id do item: "))
+    item=locadoraa.getitem(item_id)
+    if not item:
+        print("O item não foi encontrado...")
+        pause()
+        return
 
+    if cliente.locar(item):
+        print("O item foi emprestado com sucesso!")
+    else:
+        print("O item está indisponível para empréstimo no momento...")
+    pause()
 
-def listarItens():
+def devolveritem():
+    listaroclientes()
+    cliente_id=int(input("Digite o Id do cliente: "))
     os.system("cls")
-    input(" ___________________________\n |                         |\n |                         |\n |      Lista de itens      |\n |                         |\n |_________________________|\n\nLista de itens a seguir.\nClique em qualquer tecla para continuar... ")
+    cliente=locadoraa.getcliente(cliente_id)
+    if not cliente:
+        print("O cliente não foi encontrado...")
+        pause()
+        return
 
-    for idd, item in Locadoraa.listarItem().item():
-        status="Disponível" if item.isDisponivel() else "Alugado"
-        print(f"{id}-{item.getTitulo()}({status})")
-        os.system("cls")
-    os.system("pause")
+    itens=cliente.getItensalugados()
+    if not itens:
+        print("Esse cliente não possui nenhum item alugado.")
+        pause()
+        return
 
+    for num, item in enumerate(itens,1):
+        print(f"{num}-{item.gettitulo()}")
 
+    escolha=int(input("Escolha o número do item para devolver: "))
+    if 1<=escolha<=len(itens):
+        item=itens[escolha-1]
+        cliente.devolver(item)
+        print("O item foi devolvido com sucesso!")
+    else:
+        print("Escolha inválida...")
+    pause()
