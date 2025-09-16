@@ -25,6 +25,7 @@ class Item:
 
 class filme(Item):
     def __init__(self,idd,titulo,genero):
+        Item.__init__(self,idd,titulo)
         self.__genero=genero
 
     def getgenero(self):
@@ -32,6 +33,7 @@ class filme(Item):
 
 class jogo(Item):
     def __init__(self,idd,titulo,faixa):
+        Item.__init__(self,idd,titulo)
         self.__faixa=faixa
 
     def getFaixa(self):
